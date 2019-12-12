@@ -3,6 +3,7 @@ import Data from './exampleData.js';
 import MenuButton from './MenuButton.jsx';
 import Menu from './Menu.jsx';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const ShowMenuButton = styled.button`
   position: fixed;
@@ -62,9 +63,23 @@ class App extends React.Component {
     this.onClick = this.onClick.bind(this);
     this.scrollToRef = this.scrollToRef.bind(this);
     this.myRef = React.createRef();
+    this.getMenu = this.getMenu.bind(this);
   }
 
   componentDidMount () {
+    this.getMenu();
+  }
+
+  getMenu() {
+    let url = window.location.href.split('/');
+    let id = url[url.length-2];
+    axios.get(`/api/menu/${id}`)
+    .then((res) => {
+      this.setState({data: res.data});
+    })
+    .catch((err) => {
+      console.log('err is ', err);
+    })
   }
 
   onClick (event) {
