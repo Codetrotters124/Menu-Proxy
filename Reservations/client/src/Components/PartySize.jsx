@@ -1,5 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+// import {GoChevronDown} from 'react-icons/go';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
 
 const Span = styled.span`
   font-size: .875rem;
@@ -31,11 +35,13 @@ class PartySize extends React.Component {
     return (
       <div>
         <Span style={{fontWeight: 'bold'}}>Party Size </Span><br />
-        <this.props.Select value={this.state.value} onChange={this.handleChange}>
+        <this.props.Select value={this.state.value} onChange={this.handleChange}> 
+          
           {partySize.map((item, i) =>
-            <option key={i * 8}>{item}</option>
+            <option key={i * 8}>{item } </option>
           )}
         </this.props.Select>
+        
       </div>
     );
   }

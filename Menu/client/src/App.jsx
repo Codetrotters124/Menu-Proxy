@@ -73,13 +73,14 @@ class App extends React.Component {
   getMenu() {
     let url = window.location.href.split('/');
     let id = url[url.length-2];
-    axios.get(`/api/menu/${id}`)
-    .then((res) => {
-      this.setState({data: res.data});
-    })
-    .catch((err) => {
-      console.log('err is ', err);
-    })
+    console.log('id is now ', id);
+      axios.get(`/api/menu/${id}`)
+      .then((res) => {
+        this.setState({data: res.data});
+      })
+      .catch((err) => {
+        console.log('err is ', err);
+      })
   }
 
   onClick (event) {
