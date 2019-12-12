@@ -1,10 +1,31 @@
 import React from 'react';
 import moment from 'moment';
-import { thisExpression, isBlock } from '@babel/types';
-
+// import { thisExpression, isBlock } from '@babel/types';
+import styled from 'styled-components';
 const weekdaysShort = moment.weekdaysShort();
 const weekdays = moment.weekdays();
 const months = moment.months();
+import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
+
+
+const Div = styled.div`
+  background-color: #f1f2f4;
+  width: 200px;
+  margin: 0px 1px;
+  padding: 16px 20px;
+  border: 1px solid grey;
+  font-family: BrandonText
+`;
+const Tbody = styled.tbody`
+  // background-color: red;
+  border: 1px solid grey;
+  display: table-cell;
+  text-align: center;
+  box-sizing: border-box;
+  position: relative;
+  font-weight: 500;
+  background-clip: padding-box
+`;
 
 class Calendar extends React.Component {
   constructor(props) {
@@ -17,7 +38,9 @@ class Calendar extends React.Component {
     };
     this.monthNav = this.monthNav.bind(this);
     this.SelectList = this.SelectList.bind(this);
-    this.yearNav = this.yearNav.bind(this);
+    // this.yearNav = this.yearNav.bind(this);
+    this.nextMonth = this.nextMonth.bind(this);
+    this.previousMonth = this.previousMonth.bind(this);
   }
   year() {
     return this.state.dateObject.format('Y');
@@ -72,34 +95,7 @@ class Calendar extends React.Component {
       showYearPopup: true
     });
   }
-  setYear(year) {
-    let dateContext = Object.assign({}, this.state.dateObject);
-    dateContext = moment(dateContext).set('year', year);
-    this.setState({
-      dateObject: dateContext
-    });
-  }
-  onYearChange(e) {
-    this.setYear(e.target.value);
-    this.props.onYearChange && this.props.onYearChange(e, e.target.value);
-  }
-  yearNav() {
-    return (
-      this.state.showYearPopup ?
-        <input
-          defaultValue = {this.year()}
-          ref={(yearInput) => { this.yearInput = yearInput; }}
-          onKeyUp= {(e) => this.onKeyUpYear(e)}
-          onChange = {(e) => this.onYearChange(e)}
-          type='number'
-          placeholder="year"
-        />
-        :
-        <span onDoubleClick={(e) => { this.showYearEditor(); }}>
-          {this.year()}
-        </span>
-    );
-  }
+
   onChangeMonth(e, month) {
     let monthPopup = this.state.showMonthPopup;
     this.setState({
@@ -117,7 +113,7 @@ class Calendar extends React.Component {
   }
   nextMonth() {
     let dateContext = Object.assign({}, this.state.dateObject);
-    dateContext = moment(dateObject).add(1, 'month');
+    dateContext = moment(dateContext).add(1, 'month');
     this.setState({
       dateObject: dateContext
     });
@@ -125,7 +121,7 @@ class Calendar extends React.Component {
   }
   previousMonth() {
     let dateContext = Object.assign({}, this.state.dateObject);
-    dateContext = moment(dateObject).subtract(1, 'month');
+    dateContext = moment(dateContext).subtract(1, 'month');
     this.setState({
       dateObject: dateContext
     });
@@ -184,19 +180,21 @@ class Calendar extends React.Component {
       );
     });
     return (
-      <div>
+      <Div>
         <span>
-          <this.monthNav /> <this.yearNav /> 
+          <button onClick={this.previousMonth}> <GoChevronLeft onClick={() => this.previousMonth} /> </button>
+          {this.month()} {this.year()}
+          <button onClick={this.nextMonth}> <GoChevronRight onClick={() => this.nextMonth} /> </button>        
         </span>
         <table>
-          <tbody>
+          <Tbody>
             <tr>
               {weekdays}
             </tr>
             {trElems}
-          </tbody>
+          </Tbody>
         </table>
-      </div>
+      </Div>
     );
   } 
 }
