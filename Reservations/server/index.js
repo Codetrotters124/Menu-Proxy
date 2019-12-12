@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('client/dist'));
 app.use(router);
 
-let port = 3000;
+let port = 3002;
 
 app.listen(port, function() {
   console.log(`listening on port ${port}`);

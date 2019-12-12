@@ -12,7 +12,7 @@ let chance = (probability) => {return (randomInt(0,100) < probability)}
 let buildMenu = (menu) => {
   let menuNo = randomInt(0, meals.length);
   for (let j=0; j<menuNo; j++) {
-    let menuType = meals[randomInt(0, meals.length)];
+    let menuType = meals[randomInt(1, meals.length)];
     if (!menu[`${menuType}`]) {
       // 50% chance to have a description
       menu[`${menuType}`] = {};
