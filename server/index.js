@@ -8,16 +8,10 @@ const port = 3000;
 
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, '../public')));
-
-app.get('/bundle.js', (req, res) => {
-  // axios.get('http://localhost:3001/bundle.js')
-  // .then((data) => {
-  //   res.status(200).send(data.data);
-  // })
-  // .catch((err) => {
-  //   res.status(400).send();
-  // })
-})
+// app.use(express.static(path.join(__dirname, '../public')));
+app.use('/', express.static(path.join(__dirname, '../public')));
+app.use('/:id', express.static(path.join(__dirname, '../public')));
+// app.use()
+// app.use()
 
 app.listen(port, () => { console.log(`Listening from port ${port}`)});

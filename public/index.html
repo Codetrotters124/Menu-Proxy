@@ -2,19 +2,41 @@
 <html lang="en">
 <head>
   <title>Proxy Server - FEC </title>
+  <style>
+    .container {
+      margin: 10%;
+    }
+    #reservations {
+      display: inline-block;
+      bottom: 40%;
+      position: sticky;
+      width: 25%;
+    }
+    #menu {
+      display: inline-block;
+      width: 65%;
+    }
+    #gallery {
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-  <script src="react.development.js"></script>
-  <script src="react-dom.development.js"></script>
-  <div id="gallery"></div>
-  <div id="reservations"></div>
-  <div id="menu"></div>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
 
-  <!-- MENU -->
-  <script src="http://localhost:3002/main.js"></script>
+  <div id="gallery"></div>
+  <div class="container">
+    <div id="menu"></div>
+    <div id="reservations"></div>
+  </div>
+  
+  <!-- PHOTO GALLERY -->
+  <script src="http://ec2-13-56-234-241.us-west-1.compute.amazonaws.com/bundle.js"></script>
   <!-- RESERVATIONS -->
-  <script src="http://localhost:3001/bundle.js"></script>
-    <!-- PHOTO GALLERY -->
-  <script src="http://localhost:3003/bundle.js"></script>
+  <script src="http://ec2-54-153-13-234.us-west-1.compute.amazonaws.com/bundle.js"></script>
+  <!-- MENU -->  
+  <script src="http://ec2-3-136-224-163.us-east-2.compute.amazonaws.com/bundle.js"></script>
 </body>
 </html>
